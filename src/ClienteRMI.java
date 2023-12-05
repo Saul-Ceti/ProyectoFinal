@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 public class ClienteRMI extends JFrame {
     //Variables necesarias para el programa
     Cliente[] clientes;
+    final static String URL = "rmi://192.168.100.26:1099/procesar";
 
     public ClienteRMI() {
         //Parámetros para el JFrame o la ventana pricipal
@@ -109,7 +110,7 @@ public class ClienteRMI extends JFrame {
 
                 // Limpiar el arreglo de clientes
                 try {
-                    ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup("rmi://localhost:1099/procesar");
+                    ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup(URL);
                     miInterfazRMI.limpiarClientes();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -134,7 +135,7 @@ public class ClienteRMI extends JFrame {
                     String filePath = file.getAbsolutePath();
 
                     try {
-                        ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup("rmi://localhost:1099/procesar");
+                        ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup(URL);
                         clientes = miInterfazRMI.leerClientes(filePath);
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -164,7 +165,7 @@ public class ClienteRMI extends JFrame {
 
                     long tiempo = medirTiempoEjecucion(() -> {
                         try {
-                            ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup("rmi://localhost:1099/procesar");
+                            ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup(URL);
                             // Guardar los clientes procesados
                             clientesProcesados[0] = miInterfazRMI.generarCuentaClabeSecuencial();
                         } catch (Exception ex) {
@@ -197,7 +198,7 @@ public class ClienteRMI extends JFrame {
 
                     long tiempo = medirTiempoEjecucion(() -> {
                         try {
-                            ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup("rmi://localhost:1099/procesar");
+                            ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup(URL);
                             // Guardar los clientes procesados
                             clientesProcesados[0] = miInterfazRMI.generarCuentaClabeForkJoin();
                         } catch (Exception ex) {
@@ -228,7 +229,7 @@ public class ClienteRMI extends JFrame {
 
                     long tiempo = medirTiempoEjecucion(() -> {
                         try {
-                            ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup("rmi://localhost:1099/procesar");
+                            ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup(URL);
                             clientesProcesados[0] = miInterfazRMI.generarCuentaClabeExecutorService();
                             tiempoFinal[0] = miInterfazRMI.tiempoDeExecutor();
                         } catch (Exception ex) {
@@ -253,7 +254,7 @@ public class ClienteRMI extends JFrame {
     ////////////////////////////////////////////////////////////////////////////
     public static void main(String[] args) {
         try {
-            ProcesadorDatos miObjetoRMI = (ProcesadorDatos) Naming.lookup("rmi://localhost:1099/procesar");
+            ProcesadorDatos miObjetoRMI = (ProcesadorDatos) Naming.lookup(URL);
             ClienteRMI proyectoApp = new ClienteRMI();
         } catch (Exception e) {
             e.printStackTrace();
