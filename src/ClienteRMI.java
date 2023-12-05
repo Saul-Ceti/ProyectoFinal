@@ -107,8 +107,6 @@ public class ClienteRMI extends JFrame {
                 timeForkJoin.setText("0.0ms");
                 timeExecutorService.setText("0.0ms");
 
-                // Lista enlazada
-
                 // Limpiar el arreglo de clientes
                 try {
                     ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup("rmi://localhost:1099/procesar");
@@ -185,7 +183,6 @@ public class ClienteRMI extends JFrame {
                 }
             }
         });
-
         ////////////////////////////////////////////////////////////////////////
         // ForkJoin
         btnForkJoin.addActionListener(new ActionListener() {
@@ -196,11 +193,20 @@ public class ClienteRMI extends JFrame {
                 } else {
                     processData.setText("");
 
+                    Cliente[][] clientesProcesados = {null};
+
                     long tiempo = medirTiempoEjecucion(() -> {
-                        //forkJoin.generarCuentaClabe(clientes);
+                        try {
+                            ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup("rmi://localhost:1099/procesar");
+                            // Guardar los clientes procesados
+                            clientesProcesados[0] = miInterfazRMI.generarCuentaClabeForkJoin();
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
                     });
 
-                    imprimirClientes(clientes, processData);
+                    cantidadClientesProcesados.setText(Integer.toString(clientesProcesados[0].length));
+                    imprimirClientes(clientesProcesados[0], processData);
 
                     String tiempoFormateado = formatoTiempo(tiempo);
                     timeForkJoin.setText("Tiempo: " + tiempoFormateado + " ms:ns");
@@ -217,14 +223,24 @@ public class ClienteRMI extends JFrame {
                 } else {
                     processData.setText("");
 
+                    Cliente[][] clientesProcesados = {null};
+                    final long tiempoFinal[] = {0};
+
                     long tiempo = medirTiempoEjecucion(() -> {
-                        //metodoEjecutor.generarCuentaClabeParalelo(clientes, timeExecutorService);
+                        try {
+                            ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup("rmi://localhost:1099/procesar");
+                            clientesProcesados[0] = miInterfazRMI.generarCuentaClabeExecutorService();
+                            tiempoFinal[0] = miInterfazRMI.tiempoDeExecutor();
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
                     });
 
-                    imprimirClientes(clientes, processData);
+                    cantidadClientesProcesados.setText(Integer.toString(clientesProcesados[0].length));
+                    imprimirClientes(clientesProcesados[0], processData);
 
-                    String tiempoFormateado = formatoTiempo(tiempo);
-                    //timeExecutorService.setText("Tiempo: " + tiempoFormateado + " ms:ns");
+                    String tiempoFormateado = formatoTiempo(tiempoFinal[0]);
+                    timeExecutorService.setText("Tiempo: " + tiempoFormateado + " ms:ns");
                 }
             }
         });
@@ -238,9 +254,7 @@ public class ClienteRMI extends JFrame {
     public static void main(String[] args) {
         try {
             ProcesadorDatos miObjetoRMI = (ProcesadorDatos) Naming.lookup("rmi://localhost:1099/procesar");
-            //System.out.println(miObjetoRMI.saludar("Juan"));
             ClienteRMI proyectoApp = new ClienteRMI();
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -7,4 +7,5 @@ public interface ProcesadorDatos extends Remote {
     Cliente[] generarCuentaClabeForkJoin() throws RemoteException;
     Cliente[] generarCuentaClabeExecutorService() throws RemoteException;
     Cliente[] generarCuentaClabeSecuencial() throws RemoteException;
+    long tiempoDeExecutor() throws RemoteException;
 }

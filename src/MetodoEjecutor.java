@@ -6,8 +6,20 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 
 public class MetodoEjecutor {
+    public long tiempoExecutor;
+    public long tiempoDeExecutor(){
+        return tiempoExecutor;
+    }
 
-    public Cliente[] generarCuentaClabeParalelo(Cliente[] clientes, JLabel tiempo) {
+    public long medirTiempoEjecucion(Runnable runnable) {
+        long startTime = System.nanoTime();
+        runnable.run();
+        long endTime = System.nanoTime();
+
+        return endTime - startTime;
+    }
+
+    public Cliente[] generarCuentaClabeParalelo(Cliente[] clientes) {
         int numThreads = Runtime.getRuntime().availableProcessors(); // Obtener el número de núcleos disponibles
         ExecutorService executor = Executors.newFixedThreadPool(numThreads);
 
@@ -16,22 +28,16 @@ public class MetodoEjecutor {
             clientesList.add(cliente);
         }
 
-        long startTime = System.nanoTime();
-        // Dividir la lista de clientes en subgrupos para que cada hilo maneje una parte
-        int chunkSize = clientesList.size() / numThreads;
-        for (int i = 0; i < numThreads; i++) {
-            int startIndex = i * chunkSize;
-            int endIndex = (i == numThreads - 1) ? clientesList.size() : startIndex + chunkSize;
-            List<Cliente> subClientes = clientesList.subList(startIndex, endIndex);
-            executor.execute(new GenerarCuentaClabeTask(subClientes));
-        }
-        long endTime = System.nanoTime();
-        long tiempoNanosegundos = endTime - startTime;
-        long milliseconds = tiempoNanosegundos / 1_000_000;
-        long nanoseconds = tiempoNanosegundos % 1_000_000;
-        String tiempoFormateado = String.format("%d:%06d", milliseconds, nanoseconds);
-
-        tiempo.setText("Tiempo: " + tiempoFormateado + " ms:ns");
+        tiempoExecutor = medirTiempoEjecucion(() -> {
+            // Dividir la lista de clientes en subgrupos para que cada hilo maneje una parte
+            int chunkSize = clientesList.size() / numThreads;
+            for (int i = 0; i < numThreads; i++) {
+                int startIndex = i * chunkSize;
+                int endIndex = (i == numThreads - 1) ? clientesList.size() : startIndex + chunkSize;
+                List<Cliente> subClientes = clientesList.subList(startIndex, endIndex);
+                executor.execute(new GenerarCuentaClabeTask(subClientes));
+            }
+        });
 
         executor.shutdown();
         try {
@@ -40,7 +46,7 @@ public class MetodoEjecutor {
             e.printStackTrace();
         }
 
-        return clientesList.toArray(new Cliente[0]);
+        return clientes;
     }
 
     private class GenerarCuentaClabeTask implements Runnable {

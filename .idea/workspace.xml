@@ -4,23 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="21396ac8-888e-4e61-b202-8d7d74e86edb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProyectoFinal.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Cliente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ClienteRMI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ForkJoin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LeerArchivo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MetodoEjecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ProcesadorDatos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ProcesadorDatosServidor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Secuencial.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ServidorRMI.java" afterDir="false" />
+    <list default="true" id="21396ac8-888e-4e61-b202-8d7d74e86edb" name="Changes" comment="Ya casi">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClienteRMI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClienteRMI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ForkJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ForkJoin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MetodoEjecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MetodoEjecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcesadorDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcesadorDatos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcesadorDatosServidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcesadorDatosServidor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Secuencial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Secuencial.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,26 +98,35 @@
       <workItem from="1700665384895" duration="34000" />
       <workItem from="1700859776963" duration="599000" />
       <workItem from="1701716202896" duration="3443000" />
-      <workItem from="1701790919207" duration="2850000" />
+      <workItem from="1701790919207" duration="7724000" />
     </task>
+    <task id="LOCAL-00001" summary="Ya casi">
+      <option name="closed" value="true" />
+      <created>1701794207173</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701794207173</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/ProcesadorDatosServidor.java</url>
-          <line>61</line>
-          <properties class="ProcesadorDatosServidor" method="generarCuentaClabeSecuencial">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ya casi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ya casi" />
   </component>
 </project>

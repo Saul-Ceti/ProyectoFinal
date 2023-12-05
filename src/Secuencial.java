@@ -1,5 +1,4 @@
 public class Secuencial {
-
     public Cliente[] generarCuentaClabe(Cliente[] clientes) {
         for (Cliente cliente : clientes) {
             // Extraer los datos necesarios

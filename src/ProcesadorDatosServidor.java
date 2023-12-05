@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProcesadorDatosServidor extends UnicastRemoteObject implements ProcesadorDatos {
-    // Clase que acumula todos los clientes mandados desde los clientes
     private List<Cliente> clientes = new ArrayList<>();
+    private long tiempoExecutor;
 
     protected ProcesadorDatosServidor() throws RemoteException {
         super();
@@ -47,6 +47,12 @@ public class ProcesadorDatosServidor extends UnicastRemoteObject implements Proc
     }
 
     @Override
+    public Cliente[] generarCuentaClabeSecuencial() throws RemoteException {
+        Secuencial secuencial = new Secuencial();
+        return secuencial.generarCuentaClabe(clientes.toArray(new Cliente[0]));
+    }
+
+    @Override
     public Cliente[] generarCuentaClabeForkJoin() throws RemoteException {
         ForkJoin forkJoin = new ForkJoin();
         return forkJoin.generarCuentaClabe(clientes.toArray(new Cliente[0]));
@@ -55,12 +61,13 @@ public class ProcesadorDatosServidor extends UnicastRemoteObject implements Proc
     @Override
     public Cliente[] generarCuentaClabeExecutorService() throws RemoteException {
         MetodoEjecutor executorService = new MetodoEjecutor();
-        return executorService.generarCuentaClabeParalelo(clientes.toArray(new Cliente[0]), new JLabel());
+        Cliente[] clientesProcesados = executorService.generarCuentaClabeParalelo(clientes.toArray(new Cliente[0]));
+        tiempoExecutor = executorService.tiempoDeExecutor();
+        return clientesProcesados;
     }
 
     @Override
-    public Cliente[] generarCuentaClabeSecuencial() throws RemoteException {
-        Secuencial secuencial = new Secuencial();
-        return secuencial.generarCuentaClabe(clientes.toArray(new Cliente[0]));
+    public long tiempoDeExecutor() throws RemoteException {
+        return tiempoExecutor;
     }
 }
