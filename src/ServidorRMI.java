@@ -18,7 +18,7 @@ public class ServidorRMI {
             System.getProperties().put("java.rmi.server.logLevel", "VERBOSE");
 
             // Enlazar el objeto al registro RMI
-            Naming.rebind("rmi://localhost:1099/procesar", procesadorDatosServidor);
+            Naming.rebind("rmi://192.168.100.26:1099/procesar", procesadorDatosServidor);
 
             System.out.println("Servidor RMI preparado");
         } catch (Exception e) {

@@ -7,6 +7,9 @@
     <list default="true" id="21396ac8-888e-4e61-b202-8d7d74e86edb" name="Changes" comment="Final de logica, solo falta verificar conexion entre computadoras y mejorar detalles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ClienteRMI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClienteRMI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcesadorDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcesadorDatos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcesadorDatosServidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcesadorDatosServidor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ServidorRMI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServidorRMI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +98,8 @@
       <workItem from="1700859776963" duration="599000" />
       <workItem from="1701716202896" duration="3443000" />
       <workItem from="1701790919207" duration="8565000" />
-      <workItem from="1701820050809" duration="512000" />
+      <workItem from="1701820050809" duration="1130000" />
+      <workItem from="1701821206413" duration="644000" />
     </task>
     <task id="LOCAL-00001" summary="Ya casi">
       <option name="closed" value="true" />
@@ -113,7 +117,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701801409300</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Final de logica, solo falta verificar conexion entre computadoras y mejorar detalles">
+      <option name="closed" value="true" />
+      <created>1701820604625</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701820604625</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,5 +152,20 @@
     <MESSAGE value="Ya casi" />
     <MESSAGE value="Final de logica, solo falta verificar conexion entre computadoras y mejorar detalles" />
     <option name="LAST_COMMIT_MESSAGE" value="Final de logica, solo falta verificar conexion entre computadoras y mejorar detalles" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/ProcesadorDatosServidor.java</url>
+          <line>24</line>
+          <properties class="ProcesadorDatosServidor" method="leerClientes">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.nio.file.Files;
 import java.rmi.Naming;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -132,11 +134,18 @@ public class ClienteRMI extends JFrame {
                 if (result == JFileChooser.APPROVE_OPTION) {
                     // El usuario seleccionó un archivo
                     java.io.File file = fileChooser.getSelectedFile();
-                    String filePath = file.getAbsolutePath();
+
+                    // Leer el archivo y guardar los bytes en una variable
+                    byte[] fileContent;
+                    try {
+                        fileContent = Files.readAllBytes(file.toPath());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                     try {
                         ProcesadorDatos miInterfazRMI = (ProcesadorDatos) Naming.lookup(URL);
-                        clientes = miInterfazRMI.leerClientes(filePath);
+                        clientes = miInterfazRMI.leerClientes(fileContent);
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
@@ -148,7 +157,6 @@ public class ClienteRMI extends JFrame {
                     // El usuario canceló la selección del archivo
                     JOptionPane.showMessageDialog(null, "Selección de archivo cancelada.", "Información", JOptionPane.INFORMATION_MESSAGE);
                 }
-
             }
         });
         ////////////////////////////////////////////////////////////////////////

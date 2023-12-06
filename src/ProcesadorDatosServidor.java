@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -21,10 +22,23 @@ public class ProcesadorDatosServidor extends UnicastRemoteObject implements Proc
     }
 
     @Override
-    public Cliente[] leerClientes(String filePath) throws RemoteException {
+    public Cliente[] leerClientes(byte[] fileContent) throws RemoteException {
         List<Cliente> clientesUnicos = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        // leer los bytes del archivo
+        File file = new File("clientes.csv");
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            java.io.FileOutputStream fos = new java.io.FileOutputStream(file);
+            fos.write(fileContent);
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader("clientes.csv"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
